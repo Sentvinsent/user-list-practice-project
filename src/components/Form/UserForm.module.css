@@ -1,0 +1,59 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  width: 95%;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.label {
+  margin-bottom: 5px;
+  color: aliceblue;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  align-self: flex-end;
+  width: 10rem;
+  color: aliceblue;
+  padding: 15px 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+}
+
+.submit-button::after {
+  content: "";
+  width: 36%;
+  height: 400%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  top: 0;
+  right: 0;
+  transform: rotate(-30deg);
+  transform-origin: 0 0;
+  transition: 0.5s ease;
+}
+
+.submit-button:hover::after {
+  width: 60%;
+}
+
+@media only screen and (min-width: 768px) {
+  .form {
+    width: 50%;
+    max-width: 500px;
+  }
+}
