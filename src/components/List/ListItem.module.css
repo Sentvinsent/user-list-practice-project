@@ -1,0 +1,42 @@
+.list-item div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.list-item__text {
+  flex-grow: 1;
+  margin-right: 1rem;
+  background-color: #ccc;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  padding: 0.1rem 0.5rem;
+  width: 50%;
+}
+
+/* .list-item__text + .list-item__text {
+  margin-top: 0.5rem;
+} */
+
+.list-item__text:hover {
+  background-color: aliceblue;
+  cursor: default;
+  scale: 1.01;
+}
+
+div:has(.list-item__text:hover) div .list-item__text:not(:hover) {
+  opacity: 0.5;
+}
+
+.icon {
+  height: 1.2rem;
+  color: #e4326d;
+  margin: 0 0.5rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}

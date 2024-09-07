@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.12);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  outline: 0px solid #000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 1rem);
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    width: 50%;
+    max-width: 600px;
+  }
+}

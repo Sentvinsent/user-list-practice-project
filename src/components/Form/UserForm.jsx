@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classes from "./UserForm.module.css";
+import Card from "../Card/Card";
 
 const UserForm = () => {
   const [input1, setInput1] = useState("");
@@ -13,35 +14,37 @@ const UserForm = () => {
   };
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <div>
-        <label className={classes.label} tmlFor="input1">
-          User's name:
-        </label>
-        <input
-          className={classes.input}
-          type="text"
-          id="input1"
-          value={input1}
-          onChange={(e) => setInput1(e.target.value)}
-        />
-      </div>
-      <div>
-        <label className={classes.label} htmlFor="input2">
-          User's age:
-        </label>
-        <input
-          className={classes.input}
-          type="text"
-          id="input2"
-          value={input2}
-          onChange={(e) => setInput2(e.target.value)}
-        />
-      </div>
-      <button className={classes["submit-button"]} type="submit">
-        Submit
-      </button>
-    </form>
+    <Card>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <div>
+          <label className={classes.label} htmlFor="input1">
+            User's name:
+          </label>
+          <input
+            className={classes.input}
+            type="text"
+            id="input1"
+            value={input1}
+            onChange={(e) => setInput1(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className={classes.label} htmlFor="input2">
+            User's age:
+          </label>
+          <input
+            className={classes.input}
+            type="text"
+            id="input2"
+            value={input2}
+            onChange={(e) => setInput2(e.target.value)}
+          />
+        </div>
+        <button className={classes["submit-button"]} type="submit">
+          Submit
+        </button>
+      </form>
+    </Card>
   );
 };
 
