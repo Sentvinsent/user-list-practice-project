@@ -2,9 +2,13 @@
   color: aliceblue;
 }
 
+.error-text {
+  color: #ff0000;
+  font-weight: bold;
+}
+
 ul {
   padding: 1rem;
   list-style: none;
   width: 95%;
 }
-
