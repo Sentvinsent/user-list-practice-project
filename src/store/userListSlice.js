@@ -23,10 +23,10 @@ const userListSlice = createSlice({
       .addCase(fetchUsers.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addRequest.fulfilled, (state, action) => {
+        state.users.push(action.payload);
       });
-    // .addCase(addRequest.fulfilled, (state, action) => {
-    //   state.users.push(action.payload);
-    // })
     // .addCase(updateRequest.fulfilled, (state, action) => {
     //   const { id, newUser } = action.payload;
     //   const userIndex = state.users.findIndex((user) => user.id === id);

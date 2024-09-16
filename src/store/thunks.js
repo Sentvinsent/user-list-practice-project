@@ -2,24 +2,34 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import dataRequest from "../data/data";
 
 const fetchUsers = createAsyncThunk("data/fetchUsers", async () => {
-  try {
-    const data = await dataRequest(
-      {
-        url: "https://www.wixapis.com/wix-data/v2/items/query",
-        body: {
-          dataCollectionId: "Users",
+  return dataRequest(
+    {
+      url: "https://www.wixapis.com/wix-data/v2/items/query",
+      body: {
+        dataCollectionId: "Users",
+      },
+    },
+    "FETCH"
+  );
+});
+const addRequest = createAsyncThunk("data/addUser", async (data) => {
+  return dataRequest(
+    {
+      url: "https://www.wixapis.com/wix-data/v2/items",
+      body: {
+        dataCollectionId: "Users",
+        dataItem: {
+          data: {
+            userName: data.userName,
+            userAge: data.userAge,
+          },
         },
       },
-      "FETCH"
-    );
-
-    return data;
-  } catch (e) {
-    throw new Error(e.message);
-  }
+    },
+    "ADD"
+  );
 });
-const addRequest = createAsyncThunk("data/updateUser", async () => {});
 const updateRequest = createAsyncThunk("data/updateUser", async () => {});
-const deleteRequest = createAsyncThunk("data/deleteUserIS ", async () => {});
+const deleteRequest = createAsyncThunk("data/deleteUser", async () => {});
 
 export { fetchUsers, addRequest, updateRequest, deleteRequest };

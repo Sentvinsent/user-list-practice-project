@@ -41,14 +41,22 @@ const dataRequest = async (data, action) => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(
+          `Error insterting user into database. Status: ${response.status}`
+        );
       }
 
       const responseData = await response.json();
-      return responseData;
+      console.log("Response data: ", responseData);
+      const mappedData = {
+        id: responseData.dataItem.data._id,
+        userName: responseData.dataItem.data.userName,
+        userAge: responseData.dataItem.data.userAge,
+      };
+
+      return mappedData;
     } catch (error) {
-      console.log("Error posting data:", error);
-      return null;
+      throw new Error(error.message);
     }
   }
   if (action === "UPDATE") {
