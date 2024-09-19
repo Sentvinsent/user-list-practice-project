@@ -47,7 +47,6 @@ const dataRequest = async (data, action) => {
       }
 
       const responseData = await response.json();
-      console.log("Response data: ", responseData);
       const mappedData = {
         id: responseData.dataItem.data._id,
         userName: responseData.dataItem.data.userName,

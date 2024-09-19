@@ -1,4 +1,4 @@
-import classes from "./UserForm.module.css";
+import classes from "./FormInput.module.css";
 import { forwardRef } from "react";
 
 const FormInput = forwardRef((props, ref) => {

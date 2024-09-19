@@ -1,15 +1,20 @@
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useMemo } from "react";
+
+//Components
+import ListItem from "./ListItem";
+import Card from "../Card/Card";
+
+//State management
+import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers } from "../../store/thunks";
 
-import Card from "../Card/Card";
-import ListItem from "./ListItem";
+//Styles
 import styles from "./List.module.css";
 
+//Component code
 const List = () => {
   const { users, status, error } = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  let content;
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -27,6 +32,8 @@ const List = () => {
       );
     });
   }, [users]);
+
+  let content;
 
   if (status === "loading") {
     content = <p className={styles["no-user-text"]}>Loading...</p>;

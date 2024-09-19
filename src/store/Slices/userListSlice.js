@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUsers, addRequest, updateRequest, deleteRequest } from "./thunks";
+import { fetchUsers, addRequest, updateRequest, deleteRequest } from "../thunks";
 
 const initialState = {
   users: [],
@@ -25,7 +25,7 @@ const userListSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addRequest.fulfilled, (state, action) => {
-        state.users.push(action.payload);
+        state.users.unshift(action.payload);
       });
     // .addCase(updateRequest.fulfilled, (state, action) => {
     //   const { id, newUser } = action.payload;

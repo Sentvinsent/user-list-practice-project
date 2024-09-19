@@ -1,0 +1,10 @@
+.label {
+  margin-bottom: 5px;
+  color: aliceblue;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

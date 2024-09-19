@@ -15,10 +15,6 @@
   width: 50%;
 }
 
-/* .list-item__text + .list-item__text {
-  margin-top: 0.5rem;
-} */
-
 .list-item__text:hover {
   background-color: aliceblue;
   cursor: default;
