@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 //Components
 import ListItem from "./ListItem";
@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 
 //State management
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers } from "../../store/thunks";
+import { fetchUsers, deleteRequest } from "../../store/thunks";
 
 //Styles
 import styles from "./List.module.css";
@@ -20,14 +20,22 @@ const List = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
+  const handleDelete = useCallback(
+    (id) => {
+      dispatch(deleteRequest(id));
+    },
+    [dispatch]
+  );
+
   const userList = useMemo(() => {
     return users.map((user) => {
       return (
         <ListItem
-          key={user._id}
-          id={user._id}
+          key={user.id}
+          id={user.id}
           name={user.userName}
           age={user.userAge}
+          onDelete={handleDelete}
         />
       );
     });

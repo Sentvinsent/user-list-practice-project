@@ -77,22 +77,24 @@ const dataRequest = async (data, action) => {
       return null;
     }
   }
-  if (action === "REMOVE") {
+  if (action === "DELETE") {
     try {
       const response = await fetch(data.url, {
         method: "DELETE",
         headers: headers,
-        body: JSON.stringify(data.body),
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(
+          `Roor deleting from a database. Status: ${response.status}`
+        );
       }
 
       const responseData = await response.json();
-      return responseData;
+      const id = responseData.dataItem.data._id;
+      return id;
     } catch (error) {
-      console.log("Error posting data:", error);
+      console.log("Error deleting data from a database:", error);
       return null;
     }
   }

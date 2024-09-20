@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUsers, addRequest, updateRequest, deleteRequest } from "../thunks";
+import {
+  fetchUsers,
+  addRequest,
+  updateRequest,
+  deleteRequest,
+} from "../thunks";
 
 const initialState = {
   users: [],
@@ -26,18 +31,18 @@ const userListSlice = createSlice({
       })
       .addCase(addRequest.fulfilled, (state, action) => {
         state.users.unshift(action.payload);
+      })
+      // .addCase(updateRequest.fulfilled, (state, action) => {
+      //   const { id, newUser } = action.payload;
+      //   const userIndex = state.users.findIndex((user) => user.id === id);
+      //   if (userIndex !== -1) {
+      //     state.users[userIndex] = newUser;
+      //   }
+      // })
+      .addCase(deleteRequest.fulfilled, (state, action) => {
+        const id = action.payload;
+        state.users = state.users.filter((user) => user.id !== id);
       });
-    // .addCase(updateRequest.fulfilled, (state, action) => {
-    //   const { id, newUser } = action.payload;
-    //   const userIndex = state.users.findIndex((user) => user.id === id);
-    //   if (userIndex !== -1) {
-    //     state.users[userIndex] = newUser;
-    //   }
-    // })
-    // .addCase(deleteRequest.fulfilled, (state, action) => {
-    //   const id = action.payload;
-    //   state.users = state.users.filter((user) => user.id !== id);
-    // });
   },
 });
 

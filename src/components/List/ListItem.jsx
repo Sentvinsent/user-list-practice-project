@@ -10,7 +10,11 @@ const ListItem = (props) => {
           {props.name} is {props.age} years old.
         </p>
         <CIcon icon={cilPen} className={styles.icon} />
-        <CIcon icon={cilTrash} className={styles.icon} />
+        <CIcon
+          icon={cilTrash}
+          className={styles.icon}
+          onClick={() => props.onDelete(props.id)}
+        />
       </div>
     </li>
   );

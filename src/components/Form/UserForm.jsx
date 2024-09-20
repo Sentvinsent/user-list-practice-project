@@ -49,6 +49,8 @@ const UserForm = () => {
         })
       );
       dispatch(addRequest(data));
+      userNameRef.current.value = "";
+      userAgeRef.current.value = "";
     },
     [dispatch]
   );
@@ -61,7 +63,7 @@ const UserForm = () => {
         showModal: false,
       })
     );
-  }, [dispatch]);
+  }, [dispatch, error, errorMessage]);
 
   return (
     <>

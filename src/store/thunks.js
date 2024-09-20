@@ -30,6 +30,13 @@ const addRequest = createAsyncThunk("data/addUser", async (data) => {
   );
 });
 const updateRequest = createAsyncThunk("data/updateUser", async () => {});
-const deleteRequest = createAsyncThunk("data/deleteUser", async () => {});
+const deleteRequest = createAsyncThunk("data/deleteUser", async (id) => {
+  return dataRequest(
+    {
+      url: `https://www.wixapis.com/wix-data/v2/items/${id}?dataCollectionId=Users`,
+    },
+    "DELETE"
+  );
+});
 
 export { fetchUsers, addRequest, updateRequest, deleteRequest };
