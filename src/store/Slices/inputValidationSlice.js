@@ -11,10 +11,10 @@ const inputValidationSlice = createSlice({
   initialState,
   reducers: {
     setError: (state, action) => {
-      const { error, message, showModal } = action.payload;
+      const { error, message, isModalOpened } = action.payload;
       state.error = error;
       state.errorMessage = message;
-      state.isModalOpened = showModal;
+      state.isModalOpened = isModalOpened;
     },
   },
 });

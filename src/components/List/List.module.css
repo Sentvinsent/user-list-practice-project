@@ -12,3 +12,25 @@ ul {
   list-style: none;
   width: 95%;
 }
+
+.enter {
+  opacity: 0;
+  transform: translateY(-20%) translateX(-20%);
+}
+
+.enter-active {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exit-active {
+  opacity: 0;
+  transform: translateX(-20%);
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+}

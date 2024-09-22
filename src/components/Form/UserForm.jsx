@@ -16,7 +16,9 @@ import { addRequest } from "../../store/thunks";
 
 //Component code
 const UserForm = () => {
-  const { error, errorMessage } = useSelector((state) => state.input);
+  const { error, errorMessage, isModalOpened } = useSelector(
+    (state) => state.input
+  );
   const dispatch = useDispatch();
 
   const userNameRef = useRef();
@@ -36,7 +38,7 @@ const UserForm = () => {
           setError({
             error: true,
             message: validity.errorMessage,
-            showModal: true,
+            isModalOpened: true,
           })
         );
         return;
@@ -45,7 +47,7 @@ const UserForm = () => {
         setError({
           error: false,
           message: "",
-          showModal: false,
+          isModalOpened: false,
         })
       );
       dispatch(addRequest(data));
@@ -60,14 +62,14 @@ const UserForm = () => {
       setError({
         error: error,
         message: errorMessage,
-        showModal: false,
+        isModalOpened: false,
       })
     );
   }, [dispatch, error, errorMessage]);
 
   return (
     <>
-      {error && (
+      {isModalOpened && (
         <Modal onClose={closeModalHandler}>
           <h2>An error occured</h2>
           <p>{errorMessage}</p>

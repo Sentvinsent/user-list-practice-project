@@ -1,5 +1,5 @@
 export const inputValidation = (data) => {
-  const namePattern = /^[\p{L}\s\-]+$/u;
+  const namePattern = /^[\p{L}\s-]+$/u;
   const agePattern = /^[0-9]+$/;
 
   if (!namePattern.test(data.userName)) {
@@ -11,7 +11,7 @@ export const inputValidation = (data) => {
   }
   if (
     !agePattern.test(data.userAge) ||
-    data.userAge <= 18 ||
+    data.userAge < 18 ||
     data.userAge > 100
   ) {
     return {

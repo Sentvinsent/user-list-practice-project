@@ -10,6 +10,7 @@ import { fetchUsers, deleteRequest } from "../../store/thunks";
 
 //Styles
 import styles from "./List.module.css";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 //Component code
 const List = () => {
@@ -30,16 +31,26 @@ const List = () => {
   const userList = useMemo(() => {
     return users.map((user) => {
       return (
-        <ListItem
+        <CSSTransition
           key={user.id}
-          id={user.id}
-          name={user.userName}
-          age={user.userAge}
-          onDelete={handleDelete}
-        />
+          timeout={300}
+          classNames={{
+            enter: styles["enter"],
+            enterActive: styles["enter-active"],
+            exit: styles["exit"],
+            exitActive: styles["exit-active"],
+          }}
+        >
+          <ListItem
+            id={user.id}
+            name={user.userName}
+            age={user.userAge}
+            onDelete={handleDelete}
+          />
+        </CSSTransition>
       );
     });
-  }, [users]);
+  }, [users, handleDelete]);
 
   let content;
 
@@ -50,13 +61,13 @@ const List = () => {
   if (error) {
     content = <p className={styles["error-text"]}>Error: {error}</p>;
   } else {
-    {
-      users.length === 0
-        ? (content = (
-            <p className={styles["no-user-text"]}>No users in the list!</p>
-          ))
-        : (content = <ul>{userList}</ul>);
-    }
+    users.length === 0
+      ? (content = (
+          <p className={styles["no-user-text"]}>No users in the list!</p>
+        ))
+      : (content = (
+          <TransitionGroup component="ul">{userList}</TransitionGroup>
+        ));
   }
 
   return <Card>{content}</Card>;
