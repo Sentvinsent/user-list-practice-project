@@ -52,25 +52,29 @@ const List = () => {
     });
   }, [users, handleDelete]);
 
-  let content;
+  const setContent = useCallback(() => {
+    if (status === "loading") {
+      return <p className={styles["no-user-text"]}>Loading...</p>;
+    }
 
-  if (status === "loading") {
-    content = <p className={styles["no-user-text"]}>Loading...</p>;
-  }
+    if (status === "failed") {
+      return <p className={styles["error-text"]}>Error: {error}</p>;
+    }
+    if (status === "succeeded") {
+      if (users.length === 0) {
+        return <p className={styles["no-user-text"]}>No users in the list!</p>;
+      }
+      return <TransitionGroup component="ul">{userList}</TransitionGroup>;
+    }
+  }, [status, error, userList, users.length]);
 
-  if (error) {
-    content = <p className={styles["error-text"]}>Error: {error}</p>;
-  } else {
-    users.length === 0
-      ? (content = (
-          <p className={styles["no-user-text"]}>No users in the list!</p>
-        ))
-      : (content = (
-          <TransitionGroup component="ul">{userList}</TransitionGroup>
-        ));
-  }
+  let content = setContent();
 
-  return <Card>{content}</Card>;
+  return (
+    <>
+      <Card>{content}</Card>;
+    </>
+  );
 };
 
 export default List;

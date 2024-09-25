@@ -29,7 +29,25 @@ const addRequest = createAsyncThunk("data/addUser", async (data) => {
     "ADD"
   );
 });
-const updateRequest = createAsyncThunk("data/updateUser", async () => {});
+const updateRequest = createAsyncThunk("data/updateUser", async (data) => {
+  return dataRequest(
+    {
+      url: `https://www.wixapis.com/wix-data/v2/items/${data.id}`,
+      body: {
+        dataCollectionId: "Users",
+        dataItem: {
+          id: data.id,
+          data: {
+            _id: data.id,
+            userName: data.userName,
+            userAge: data.userAge,
+          },
+        },
+      },
+    },
+    "UPDATE"
+  );
+});
 const deleteRequest = createAsyncThunk("data/deleteUser", async (id) => {
   return dataRequest(
     {

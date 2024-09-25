@@ -1,0 +1,52 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0.1rem;
+}
+
+.input {
+  margin-right: 1rem;
+  width: 100%;
+}
+
+.name,
+.age {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.1rem 0.5rem;
+}
+
+.name {
+  flex-grow: 2;
+  width: 75%;
+  margin-right: 1rem;
+}
+.age {
+  flex-grow: 1;
+  width: 25%;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  padding: 0 0.4rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  height: 1.5rem;
+  color: #e4326d;
+}
+
+.iconButton:hover {
+  transform: scale(1.2);
+}
+
+.iconButton > * {
+  height: inherit;
+}
+
+.error-text {
+  color: #e4326d;
+  font-weight: bold;
+}

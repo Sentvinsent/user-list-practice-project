@@ -55,7 +55,7 @@ const dataRequest = async (data, action) => {
 
       return mappedData;
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error("Failed to insert into database. Try again later.");
     }
   }
   if (action === "UPDATE") {
@@ -71,10 +71,17 @@ const dataRequest = async (data, action) => {
       }
 
       const responseData = await response.json();
-      return responseData;
+      const updatedData = {
+        id: responseData.dataItem.data._id,
+        newUser: {
+          id: responseData.dataItem.data._id,
+          userName: responseData.dataItem.data.userName,
+          userAge: responseData.dataItem.data.userAge,
+        },
+      };
+      return updatedData;
     } catch (error) {
-      console.log("Error posting data:", error);
-      return null;
+      throw new Error("Failed to update database. Try again later.");
     }
   }
   if (action === "DELETE") {
@@ -94,8 +101,7 @@ const dataRequest = async (data, action) => {
       const id = responseData.dataItem.data._id;
       return id;
     } catch (error) {
-      console.log("Error deleting data from a database:", error);
-      return null;
+      throw new Error("Failed to delete from database. Try again later.");
     }
   }
 };

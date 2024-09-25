@@ -1,18 +1,15 @@
-import classes from "./FormInput.module.css";
 import { forwardRef } from "react";
 
-const FormInput = forwardRef((props, ref) => {
+//Styles
+import classes from "./FormInput.module.css";
+
+const FormInput = forwardRef(({ id, label, type }, ref) => {
   return (
     <div>
-      <label className={classes.label} htmlFor={props.id}>
-        {props.label}
+      <label className={classes.label} htmlFor={id}>
+        {label}
       </label>
-      <input
-        className={classes.input}
-        type={props.type}
-        id={props.id}
-        ref={ref}
-      />
+      <input className={classes.input} type={type} id={id} ref={ref} />
     </div>
   );
 });
