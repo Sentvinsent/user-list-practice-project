@@ -1,3 +1,5 @@
+@import url(../../../_variables.css);
+
 .form {
   display: flex;
   align-items: center;
@@ -35,7 +37,7 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   height: 1.5rem;
-  color: #e4326d;
+  color: var(--icon-error-color);
 }
 
 .iconButton:hover {
@@ -47,6 +49,6 @@
 }
 
 .error-text {
-  color: #e4326d;
+  color: var(--icon-error-color);
   font-weight: bold;
 }

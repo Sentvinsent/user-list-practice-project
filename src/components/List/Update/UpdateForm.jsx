@@ -1,10 +1,17 @@
-import classes from "./UpdateForm.module.css";
+//3rd party imports
 import { CIcon } from "@coreui/icons-react";
 import { cilCheckAlt, cilX } from "@coreui/icons";
-import { useState } from "react";
+
+//Styles
+import "../../../animations.css";
+import classes from "./UpdateForm.module.css";
+import { CSSTransition } from "react-transition-group";
+
+//State management
+import { inputValidation } from "../../../helpers/inputValidations";
 import { useDispatch, useSelector } from "react-redux";
-import { inputValidation } from "../../helpers/inputValidations";
-import { updateRequest } from "../../store/thunks";
+import { updateRequest } from "../../../store/thunks";
+import { useCallback, useState } from "react";
 
 const UpdateForm = ({ id, name, age, onClose }) => {
   const { itemStatus, itemError } = useSelector((state) => state.users);
@@ -15,6 +22,16 @@ const UpdateForm = ({ id, name, age, onClose }) => {
     error: false,
     errorMessage: "",
   });
+
+  const errorTimeout = useCallback(() => {
+    setTimeout(() => {
+      setState((prevState) => ({
+        ...prevState,
+        error: false,
+        errorMessage: "",
+      }));
+    }, 3000);
+  }, []);
 
   const handleUpdate = (event) => {
     event.preventDefault();
@@ -31,13 +48,7 @@ const UpdateForm = ({ id, name, age, onClose }) => {
         error: true,
         errorMessage: validity.errorMessage,
       }));
-      setTimeout(() => {
-        setState((prevState) => ({
-          ...prevState,
-          error: false,
-          errorMessage: "",
-        }));
-      }, 3000);
+      errorTimeout();
       return;
     }
     if (state.currName === name && state.currAge === age) {
@@ -51,13 +62,7 @@ const UpdateForm = ({ id, name, age, onClose }) => {
         error: true,
         errorMessage: itemError,
       }));
-      setTimeout(() => {
-        setState((prevState) => ({
-          ...prevState,
-          error: false,
-          errorMessage: "",
-        }));
-      }, 3000);
+      errorTimeout();
       return;
     }
     onClose();
@@ -100,9 +105,20 @@ const UpdateForm = ({ id, name, age, onClose }) => {
           </button>
         </div>
       </form>
-      {state.error && (
+
+      <CSSTransition
+        in={state.error}
+        timeout={300}
+        classNames={{
+          enter: "enter",
+          enterActive: "enter-active",
+          exit: "exit",
+          exitActive: "exit-active",
+        }}
+        unmountOnExit
+      >
         <p className={classes["error-text"]}>{state.errorMessage}</p>
-      )}
+      </CSSTransition>
     </>
   );
 };

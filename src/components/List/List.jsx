@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers, deleteRequest } from "../../store/thunks";
 
 //Styles
+import "../../animations.css";
 import styles from "./List.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -35,9 +36,9 @@ const List = () => {
           key={user.id}
           timeout={300}
           classNames={{
-            enter: styles["enter"],
-            enterActive: styles["enter-active"],
-            exit: styles["exit"],
+            enter: "enter",
+            enterActive: "enter-active",
+            exit: "exit",
             exitActive: styles["exit-active"],
           }}
         >
@@ -72,7 +73,7 @@ const List = () => {
 
   return (
     <>
-      <Card>{content}</Card>;
+      <Card>{content}</Card>
     </>
   );
 };

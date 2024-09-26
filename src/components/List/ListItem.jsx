@@ -3,8 +3,10 @@ import { CIcon } from "@coreui/icons-react";
 import { cilTrash, cilPen } from "@coreui/icons";
 
 //Styles
+import { CSSTransition } from "react-transition-group";
 import styles from "./ListItem.module.css";
-import UpdateForm from "./UpdateForm";
+import UpdateForm from "./Update/UpdateForm";
+import "../../animations.css";
 
 //State management
 import { useState, useCallback, memo } from "react";
@@ -32,7 +34,19 @@ const ListItem = memo((props) => {
           onClick={() => props.onDelete(props.id)}
         />
       </div>
-      {isForUpdate && <UpdateForm {...props} onClose={handleClose} />}
+      <CSSTransition
+        in={isForUpdate}
+        timeout={300}
+        classNames={{
+          enter: "enter",
+          enterActive: "enter-active",
+          exit: "exit",
+          exitActive: "exit-active",
+        }}
+        unmountOnExit
+      >
+        <UpdateForm {...props} onClose={handleClose} />
+      </CSSTransition>
     </li>
   );
 });

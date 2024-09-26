@@ -1,3 +1,5 @@
+@import url(../../_variables.css);
+
 .list-item div {
   display: flex;
   flex-direction: row;
@@ -16,7 +18,7 @@
 }
 
 .list-item__text:hover {
-  background-color: aliceblue;
+  background-color: var(--primary-color);
   cursor: default;
   scale: 1.01;
 }
@@ -27,7 +29,7 @@ div:has(.list-item__text:hover) div .list-item__text:not(:hover) {
 
 .icon {
   height: 1.2rem;
-  color: #e4326d;
+  color: var(--icon-error-color);
   margin: 0 0.5rem;
   transition: transform 0.3s ease;
   cursor: pointer;

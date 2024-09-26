@@ -1,0 +1,6 @@
+@import url(../../../_variables.css);
+
+.error-text {
+  color: var(--icon-error-color);
+  font-weight: bold;
+}

@@ -1,6 +1,8 @@
+@import url(../../_variables.css);
+
 .label {
   margin-bottom: 5px;
-  color: aliceblue;
+  color: var(--primary-color);
 }
 
 .input {

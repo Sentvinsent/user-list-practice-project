@@ -1,3 +1,5 @@
+@import url(../../_variables.css);
+
 .form {
   display: flex;
   flex-direction: column;
@@ -14,12 +16,12 @@
 .submit-button {
   align-self: flex-end;
   width: 10rem;
-  color: aliceblue;
+  color: var(--primary-color);
   padding: 12px 0px;
   background-color: rgba(0, 0, 0, 0.3);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   overflow: hidden;
   position: relative;
   border-radius: 25px;

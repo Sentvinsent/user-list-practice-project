@@ -53,7 +53,7 @@ const UserForm = () => {
       );
 
       dispatch(addRequest(data));
-      console.log("Status", itemStatus);
+
       if (itemStatus === "failed") {
         dispatch(
           setError({

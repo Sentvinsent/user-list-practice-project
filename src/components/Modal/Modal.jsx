@@ -1,4 +1,6 @@
 import React from "react";
+
+//Styles
 import styles from "./Modal.module.css";
 
 const Modal = ({ onClose, children }) => {
