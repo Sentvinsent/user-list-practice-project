@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/user-list-practice-project/static/css/main.51d58bb2.css",
+    "main.js": "/user-list-practice-project/static/js/main.50b2009d.js",
+    "index.html": "/user-list-practice-project/index.html",
+    "main.51d58bb2.css.map": "/user-list-practice-project/static/css/main.51d58bb2.css.map",
+    "main.50b2009d.js.map": "/user-list-practice-project/static/js/main.50b2009d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51d58bb2.css",
+    "static/js/main.50b2009d.js"
+  ]
+}
