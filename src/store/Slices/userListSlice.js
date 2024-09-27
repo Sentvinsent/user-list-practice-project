@@ -9,6 +9,8 @@ import {
 const initialState = {
   users: [],
   status: "idle",
+  formStatus: "idle",
+  formError: null,
   itemStatus: "idle",
   itemError: null,
   error: null,
@@ -36,8 +38,15 @@ const userListSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addRequest.fulfilled, (state, action) => {
-        state.itemStatus = "succeeded";
+        state.formStatus = "succeeded";
         state.users.unshift(action.payload);
+      })
+      .addCase(addRequest.rejected, (state, action) => {
+        state.formStatus = "failed";
+        state.formError = action.error.message;
+      })
+      .addCase(addRequest.pending, (state) => {
+        state.formStatus = "loading";
       })
       .addCase(updateRequest.fulfilled, (state, action) => {
         const { id, newUser } = action.payload;
@@ -53,22 +62,14 @@ const userListSlice = createSlice({
         state.itemStatus = "succeeded";
       })
       .addMatcher(
-        isAnyOf(
-          addRequest.rejected,
-          updateRequest.rejected,
-          deleteRequest.rejected
-        ),
+        isAnyOf(updateRequest.rejected, deleteRequest.rejected),
         (state, action) => {
           state.itemStatus = "failed";
           state.itemError = action.error.message;
         }
       )
       .addMatcher(
-        isAnyOf(
-          addRequest.pending,
-          updateRequest.pending,
-          deleteRequest.pending
-        ),
+        isAnyOf(updateRequest.pending, deleteRequest.pending),
         (state) => {
           state.itemStatus = "loading";
         }

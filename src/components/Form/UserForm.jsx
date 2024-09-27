@@ -19,7 +19,7 @@ const UserForm = () => {
   const { error, errorMessage, isModalOpened } = useSelector(
     (state) => state.input
   );
-  const { itemStatus, itemError } = useSelector((state) => state.users);
+  const { formStatus, formError } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const userNameRef = useRef();
@@ -54,11 +54,11 @@ const UserForm = () => {
 
       dispatch(addRequest(data));
 
-      if (itemStatus === "failed") {
+      if (formStatus === "failed") {
         dispatch(
           setError({
             error: true,
-            message: itemError,
+            message: formError,
             isModalOpened: true,
           })
         );
@@ -67,7 +67,7 @@ const UserForm = () => {
       userNameRef.current.value = "";
       userAgeRef.current.value = "";
     },
-    [dispatch, itemStatus, itemError]
+    [dispatch, formStatus, formError]
   );
   const closeModalHandler = useCallback(() => {
     dispatch(
@@ -105,9 +105,9 @@ const UserForm = () => {
           <button
             className={classes["submit-button"]}
             type="submit"
-            disabled={itemStatus === "loading"}
+            disabled={formStatus === "loading"}
           >
-            {itemStatus === "loading" ? "Submitting..." : "Submit"}
+            {formStatus === "loading" ? "Submitting..." : "Submit"}
           </button>
         </form>
       </Card>
