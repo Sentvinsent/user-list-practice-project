@@ -9,7 +9,7 @@ import UpdateForm from "./Update/UpdateForm";
 import "../../animations.css";
 
 //State management
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useMemo } from "react";
 
 const ListItem = memo((props) => {
   const [isForUpdate, setIsForUpdate] = useState(false);
@@ -21,8 +21,9 @@ const ListItem = memo((props) => {
   const handleClose = useCallback(() => {
     setIsForUpdate(false);
   }, []);
-  return (
-    <li className={styles["list-item"]}>
+
+  const rendredItem = useMemo(() => {
+    return (
       <div>
         <p className={styles["list-item__text"]}>
           {props.name} is {props.age} years old.
@@ -34,6 +35,12 @@ const ListItem = memo((props) => {
           onClick={() => props.onDelete(props.id)}
         />
       </div>
+    );
+  }, [props, handleUpdate]);
+
+  return (
+    <li className={styles["list-item"]}>
+      {rendredItem}
       <CSSTransition
         in={isForUpdate}
         timeout={300}

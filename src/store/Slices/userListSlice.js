@@ -17,7 +17,11 @@ const initialState = {
 const userListSlice = createSlice({
   name: "user-list",
   initialState,
-  reducers: {},
+  reducers: {
+    setItemError: (state, action) => {
+      state.itemError = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
@@ -72,4 +76,5 @@ const userListSlice = createSlice({
   },
 });
 
+export const { setItemError } = userListSlice.actions;
 export default userListSlice.reducer;

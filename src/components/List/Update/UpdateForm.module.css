@@ -13,23 +13,6 @@
   width: 100%;
 }
 
-.name,
-.age {
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0.1rem 0.5rem;
-}
-
-.name {
-  flex-grow: 2;
-  width: 75%;
-  margin-right: 1rem;
-}
-.age {
-  flex-grow: 1;
-  width: 25%;
-}
-
 .iconButton {
   background: none;
   border: none;

@@ -9,59 +9,50 @@ import { CSSTransition } from "react-transition-group";
 
 //State management
 import { inputValidation } from "../../../helpers/inputValidations";
+import { setItemError } from "../../../store/Slices/userListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRequest } from "../../../store/thunks";
-import { useCallback, useState } from "react";
+import { useCallback, memo, useRef, useEffect } from "react";
+import UpdateFormInput from "./UpdateFormInput";
 
-const UpdateForm = ({ id, name, age, onClose }) => {
+const UpdateForm = memo(({ id, name, age, onClose }) => {
   const { itemStatus, itemError } = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    currAge: age,
-    currName: name,
-    error: false,
-    errorMessage: "",
-  });
+  const enteredName = useRef();
+  const enteredAge = useRef();
 
   const errorTimeout = useCallback(() => {
     setTimeout(() => {
-      setState((prevState) => ({
-        ...prevState,
-        error: false,
-        errorMessage: "",
-      }));
+      dispatch(setItemError(null));
     }, 3000);
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    enteredName.current.value = name;
+    enteredAge.current.value = age;
+  }, [name, age]);
 
   const handleUpdate = (event) => {
     event.preventDefault();
 
     const data = {
-      userName: state.currName,
-      userAge: state.currAge,
+      userName: enteredName.current.value,
+      userAge: enteredAge.current.value,
     };
+
     const validity = inputValidation(data);
 
     if (validity.error) {
-      setState((prevState) => ({
-        ...prevState,
-        error: true,
-        errorMessage: validity.errorMessage,
-      }));
+      dispatch(setItemError(validity.errorMessage));
       errorTimeout();
       return;
     }
-    if (state.currName === name && state.currAge === age) {
+    if (data.userName === name && data.userAge === age) {
       onClose();
       return;
     }
     dispatch(updateRequest({ id, ...data }));
     if (itemStatus === "failed") {
-      setState((prevState) => ({
-        ...prevState,
-        error: true,
-        errorMessage: itemError,
-      }));
       errorTimeout();
       return;
     }
@@ -72,42 +63,36 @@ const UpdateForm = ({ id, name, age, onClose }) => {
     <>
       <form id="updateForm" className={classes.form} onSubmit={handleUpdate}>
         <div className={classes.input}>
-          <input
-            className={classes.name}
-            value={state.currName}
-            placeholder="User name"
-            onChange={(e) =>
-              setState((prevState) => ({
-                ...prevState,
-                currName: e.target.value,
-              }))
-            }
+          <UpdateFormInput
+            placeholder="User name:"
+            type="text"
+            styling="name"
+            ref={enteredName}
           />
-          <input
-            className={classes.age}
+          <UpdateFormInput
+            placeholder="User age:"
             type="number"
-            value={state.currAge}
-            placeholder="Age"
-            onChange={(e) =>
-              setState((prevState) => ({
-                ...prevState,
-                currAge: Number(e.target.value),
-              }))
-            }
+            styling="age"
+            ref={enteredAge}
           />
         </div>
         <div>
           <button type="submit" className={classes.iconButton}>
             <CIcon icon={cilCheckAlt} />
           </button>
-          <button className={classes.iconButton} onClick={onClose}>
+          <button
+            className={classes.iconButton}
+            onClick={(e) => {
+              e.preventDefault();
+              onClose();
+            }}
+          >
             <CIcon icon={cilX} />
           </button>
         </div>
       </form>
-
       <CSSTransition
-        in={state.error}
+        in={itemError}
         timeout={300}
         classNames={{
           enter: "enter",
@@ -117,10 +102,10 @@ const UpdateForm = ({ id, name, age, onClose }) => {
         }}
         unmountOnExit
       >
-        <p className={classes["error-text"]}>{state.errorMessage}</p>
+        <p className={classes["error-text"]}>{itemError}</p>
       </CSSTransition>
     </>
   );
-};
+});
 
 export default UpdateForm;

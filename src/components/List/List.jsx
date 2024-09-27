@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { memo, useCallback, useEffect, useMemo } from "react";
 
 //Components
 import ListItem from "./ListItem";
@@ -14,7 +14,7 @@ import styles from "./List.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 //Component code
-const List = () => {
+const List = memo(() => {
   const { users, status, error } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
@@ -76,6 +76,6 @@ const List = () => {
       <Card>{content}</Card>
     </>
   );
-};
+});
 
 export default List;
