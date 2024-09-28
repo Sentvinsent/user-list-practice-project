@@ -1,10 +1,15 @@
 @import url(../../_variables.css);
 
+.list-item {
+  transition: max-height 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 .list-item div {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  transition: max-height 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .list-item__text {

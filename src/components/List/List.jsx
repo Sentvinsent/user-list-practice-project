@@ -34,12 +34,12 @@ const List = memo(() => {
       return (
         <CSSTransition
           key={user.id}
-          timeout={300}
+          timeout={800}
           classNames={{
             enter: "enter",
             enterActive: "enter-active",
             exit: "exit",
-            exitActive: styles["exit-active"],
+            exitActive: "exit-active",
           }}
         >
           <ListItem

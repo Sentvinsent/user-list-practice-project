@@ -11,6 +11,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: calc(100% - 1rem);
   margin: 1rem 0;
+  transition: max-height 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 @media only screen and (min-width: 768px) {

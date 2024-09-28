@@ -91,19 +91,19 @@ const UpdateForm = memo(({ id, name, age, onClose }) => {
           </button>
         </div>
       </form>
-      <CSSTransition
-        in={itemError}
-        timeout={300}
-        classNames={{
-          enter: "enter",
-          enterActive: "enter-active",
-          exit: "exit",
-          exitActive: "exit-active",
-        }}
-        unmountOnExit
-      >
-        <p className={classes["error-text"]}>{itemError}</p>
-      </CSSTransition>
+        <CSSTransition
+          in={itemError}
+          timeout={300}
+          classNames={{
+            enter: "enter",
+            enterActive: "enter-active",
+            exit: "exit",
+            exitActive: "exit-active",
+          }}
+          unmountOnExit
+        >
+          <p className={classes["error-text"]}>{itemError}</p>
+        </CSSTransition>
     </>
   );
 });

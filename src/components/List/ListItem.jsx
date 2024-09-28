@@ -43,7 +43,7 @@ const ListItem = memo((props) => {
       {rendredItem}
       <CSSTransition
         in={isForUpdate}
-        timeout={300}
+        timeout={800}
         classNames={{
           enter: "enter",
           enterActive: "enter-active",

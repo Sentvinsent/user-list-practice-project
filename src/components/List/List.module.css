@@ -13,10 +13,5 @@ ul {
   padding: 1rem;
   list-style: none;
   width: 95%;
-}
-
-.exit-active {
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: max-height 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
