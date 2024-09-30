@@ -47,8 +47,7 @@
 .enter-active {
   opacity: 1;
   margin-top: 1rem;
-  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
-    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .exit {
@@ -60,6 +59,5 @@
 .exit-active {
   opacity: 0;
   margin-top: -1rem;
-  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
-    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }

@@ -1,7 +1,7 @@
 @import url(../../_variables.css);
 
 .list-item {
-  transition: margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:  all 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .list-item div {
@@ -52,8 +52,7 @@ div:has(.list-item__text:hover) div .list-item__text:not(:hover) {
 .enter-active {
   opacity: 1;
   margin-top: 0rem;
-  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
-    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:  all 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .exit {
@@ -65,6 +64,5 @@ div:has(.list-item__text:hover) div .list-item__text:not(:hover) {
 .exit-active {
   opacity: 0;
   margin-top: -1.7rem;
-  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
-    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:  all 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
