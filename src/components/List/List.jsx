@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers, deleteRequest } from "../../store/thunks";
 
 //Styles
-import "../../animations.css";
 import styles from "./List.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -36,10 +35,10 @@ const List = memo(() => {
           key={user.id}
           timeout={800}
           classNames={{
-            enter: "enter",
-            enterActive: "enter-active",
-            exit: "exit",
-            exitActive: "exit-active",
+            enter: styles.enter,
+            enterActive: styles["enter-active"],
+            exit: styles.exit,
+            exitActive: styles["exit-active"],
           }}
         >
           <ListItem

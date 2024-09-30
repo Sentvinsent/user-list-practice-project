@@ -6,6 +6,7 @@
   justify-content: flex-end;
   width: 100%;
   padding: 0.1rem;
+  z-index: -1;
 }
 
 .input {
@@ -34,4 +35,31 @@
 .error-text {
   color: var(--icon-error-color);
   font-weight: bold;
+  z-index: -2;
+}
+
+.enter {
+  opacity: 0;
+  margin-top: -2rem;
+  overflow: hidden;
+}
+
+.enter-active {
+  opacity: 1;
+  margin-top: 1rem;
+  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.exit {
+  opacity: 1;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.exit-active {
+  opacity: 0;
+  margin-top: -1rem;
+  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }

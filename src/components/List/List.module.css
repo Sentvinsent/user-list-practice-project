@@ -13,5 +13,30 @@ ul {
   padding: 1rem;
   list-style: none;
   width: 95%;
-  transition: max-height 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.enter {
+  opacity: 0;
+  margin-top: -10%;
+  overflow: hidden;
+}
+
+.enter-active {
+  opacity: 1;
+  margin-top: 0;
+  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.exit {
+  opacity: 1;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.exit-active {
+  opacity: 0;
+  margin-top: -10%;
+  transition: opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    margin-top 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }

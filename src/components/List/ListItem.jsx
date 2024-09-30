@@ -6,7 +6,6 @@ import { cilTrash, cilPen } from "@coreui/icons";
 import { CSSTransition } from "react-transition-group";
 import styles from "./ListItem.module.css";
 import UpdateForm from "./Update/UpdateForm";
-import "../../animations.css";
 
 //State management
 import { useState, useCallback, memo, useMemo } from "react";
@@ -45,10 +44,10 @@ const ListItem = memo((props) => {
         in={isForUpdate}
         timeout={800}
         classNames={{
-          enter: "enter",
-          enterActive: "enter-active",
-          exit: "exit",
-          exitActive: "exit-active",
+          enter: styles.enter,
+          enterActive: styles["enter-active"],
+          exit: styles.exit,
+          exitActive: styles["exit-active"],
         }}
         unmountOnExit
       >

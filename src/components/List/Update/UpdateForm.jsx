@@ -3,7 +3,6 @@ import { CIcon } from "@coreui/icons-react";
 import { cilCheckAlt, cilX } from "@coreui/icons";
 
 //Styles
-import "../../../animations.css";
 import classes from "./UpdateForm.module.css";
 import { CSSTransition } from "react-transition-group";
 
@@ -24,7 +23,7 @@ const UpdateForm = memo(({ id, name, age, onClose }) => {
   const errorTimeout = useCallback(() => {
     setTimeout(() => {
       dispatch(setItemError(null));
-    }, 3000);
+    }, 4000);
   }, [dispatch]);
 
   useEffect(() => {
@@ -91,19 +90,20 @@ const UpdateForm = memo(({ id, name, age, onClose }) => {
           </button>
         </div>
       </form>
-        <CSSTransition
-          in={itemError}
-          timeout={300}
-          classNames={{
-            enter: "enter",
-            enterActive: "enter-active",
-            exit: "exit",
-            exitActive: "exit-active",
-          }}
-          unmountOnExit
-        >
-          <p className={classes["error-text"]}>{itemError}</p>
-        </CSSTransition>
+
+      <CSSTransition
+        in={itemError}
+        timeout={800}
+        classNames={{
+          enter: classes.enter,
+          enterActive: classes["enter-active"],
+          exit: classes.exit,
+          exitActive: classes["exit-active"],
+        }}
+        unmountOnExit
+      >
+        <p className={classes["error-text"]}>{itemError}</p>
+      </CSSTransition>
     </>
   );
 });
